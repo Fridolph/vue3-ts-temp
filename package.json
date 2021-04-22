@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "version": "npx conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w -r 0 -s"
   },
   "dependencies": {
     "vue": "^3.0.5"
@@ -17,20 +18,21 @@
     "@vue/compiler-sfc": "^3.0.5",
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
-    "cz-customizable": "^6.3.0",
     "husky": "^6.0.0",
+    "lint-staged": "^10.5.1",
     "typescript": "^4.1.3",
     "vite": "^2.1.5",
     "vue-tsc": "^0.0.24"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "lint-staged": {
+    "src/**/*.{jsx,txs,ts,js,json,vue,md}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-customizable"
-    }
-  }
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }
